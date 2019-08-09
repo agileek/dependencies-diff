@@ -1,5 +1,5 @@
-# dependencies-diff
-[![Build Status](https://travis-ci.org/agileek/dependencies-diff.svg)](https://travis-ci.org/agileek/dependencies-diff)
+# diff-packages
+[![Build Status](https://travis-ci.org/agileek/diff-packages.svg)](https://travis-ci.org/agileek/diff-packages)
 
 Shows a diff of dependencies between N packages.json
 

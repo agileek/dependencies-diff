@@ -1,5 +1,5 @@
 {
-  "name": "dependencies-diff",
+  "name": "diff-packages",
   "version": "1.0.0",
   "description": "Diffs the dependencies between N package.json",
   "main": "index.js",
