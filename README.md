@@ -17,6 +17,9 @@ diff-packages /foo/bar/package.json /path/to/comparing/node_modules
 
 # Specify devDependencies in packages
 diff-packages --dev package.json /other/package.json
+
+# Want to see both ?
+diff-packages --both package.json /other/package.json
 ```
 
 
