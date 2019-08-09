@@ -1,0 +1,7 @@
+.eslintignore
+.eslintrc.js
+.prettierrc
+.travis.yml
+*.test.js
+__test_data__
+*.log
