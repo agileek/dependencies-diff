@@ -7,16 +7,16 @@ Useful when migrating to yarn workspaces
 
 ## Install
 ```sh
-npm i -g dependencies-diff
+npm i -g diff-packages (Or use npx)
 ```
 
 ## Usage
 ```sh
 # Use packages
-dependencies-diff /foo/bar/package.json /path/to/comparing/node_modules
+diff-packages /foo/bar/package.json /path/to/comparing/node_modules
 
 # Specify devDependencies in packages
-dependencies-diff --dev package.json /other/package.json
+diff-packages --dev package.json /other/package.json
 ```
 
 
