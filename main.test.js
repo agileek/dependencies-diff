@@ -5,6 +5,11 @@ it("should display prod dependency diffs", () => {
   expect(actual).toStrictEqual([{ dependency: "colors", versions: ["^1.3.3"] }]);
 });
 
+it("should not fail when no dependencies", () => {
+  const actual = getDiffs(true, ["__test_data__/package-1.json", "__test_data__/package-3.json"]);
+  expect(actual).toStrictEqual([{ dependency: "colors", versions: ["^1.3.3"] }]);
+});
+
 it("should display dev dependency diffs", () => {
   const actual = getDiffs(false, ["__test_data__/package-1.json", "__test_data__/package-2.json"]);
   expect(actual).toStrictEqual([

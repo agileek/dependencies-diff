@@ -19,8 +19,7 @@ function getDiffs(prodDependencies = true, packages) {
     process.exit(1);
   }
 
-  const modules = packages.map(currentPackage => readModules(prodDependencies, currentPackage));
-
+  const modules = packages.map(currentPackage => readModules(prodDependencies, currentPackage)).filter(module => module.deps !== undefined);
   const keys = [...new Set(modules.map(module => Object.keys(module.deps)).reduce((x, y) => x.concat(y), []))].sort();
   const result = [];
   keys.forEach(baseKey => {
