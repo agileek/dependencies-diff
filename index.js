@@ -2,14 +2,14 @@
 const colors = require("colors/safe");
 const { getDiffs } = require("./main");
 
-const packagesToCompare = [];
+const parameters = [];
 for (let i = 2; i < process.argv.length; i++) {
-  packagesToCompare.push(process.argv[i]);
+  parameters.push(process.argv[i]);
 }
 
-const prodDependencies = packagesToCompare[0].indexOf(":dev") === -1;
+const packagesToCompare = parameters.filter(parameter => parameter !== "--dev");
 
-const result = getDiffs(prodDependencies, packagesToCompare);
+const result = getDiffs(packagesToCompare.length === parameters.length, packagesToCompare);
 
 result.forEach(({ dependency, versions }) => {
   if (versions.length > 1) {

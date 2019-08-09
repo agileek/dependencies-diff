@@ -16,7 +16,7 @@ npm i -g dependencies-diff
 dependencies-diff /foo/bar/package.json /path/to/comparing/node_modules
 
 # Specify devDependencies in packages
-package-diff package.json:dev /other/package.json
+dependencies-diff --dev package.json /other/package.json
 ```
 
 

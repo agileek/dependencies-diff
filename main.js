@@ -3,7 +3,7 @@ const colors = require("colors/safe");
 const fs = require("fs");
 
 function readModules(prodDependencies, location) {
-  const data = fs.readFileSync(location.replace(":dev", ""), "utf-8");
+  const data = fs.readFileSync(location, "utf-8");
   const parsed = JSON.parse(data);
 
   const deps = prodDependencies ? parsed.dependencies : parsed.devDependencies;
