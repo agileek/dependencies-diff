@@ -1,18 +1,15 @@
-# package-diff
-Shows a diff of node modules between two directories
+# dependencies-diff
+Shows a diff of dependencies between N packages.json
 
 ## Install
 ```sh
-npm i -g package-diff
+npm i -g dependencies-diff
 ```
 
 ## Usage
 ```sh
-# Use folders
-package-diff /path/to/node_modules /path/to/comparing/node_modules
-
 # Use packages
-package-diff /foo/bar/package.json /path/to/comparing/node_modules
+dependencies-diff /foo/bar/package.json /path/to/comparing/node_modules
 
 # Specify devDependencies in packages
 package-diff package.json:dev /other/package.json
