@@ -1,6 +1,6 @@
 #! /usr/bin/env node
-const colors = require("colors/safe");
 const fs = require("fs");
+const cliOptions = ["--dev", "--prod", "--both", "--ci"];
 
 function readModules(dependencies, location) {
   const data = fs.readFileSync(location, "utf-8");
@@ -26,7 +26,7 @@ function readModules(dependencies, location) {
 const OptionsEnum = Object.freeze({ dev: "devDependencies", prod: "prodDependencies", both: "both" });
 function getDiffs(dependencies = OptionsEnum.prod, packages) {
   if (packages.length < 2) {
-    console.error(colors.red(`At least two packages.json must be provided ${process.argv}`));
+    console.error(red(`At least two packages.json must be provided ${process.argv}`));
     process.exit(1);
   }
 
@@ -45,4 +45,44 @@ function getDiffs(dependencies = OptionsEnum.prod, packages) {
   return result;
 }
 
-module.exports = { getDiffs, OptionsEnum };
+function parseArgs(commandLineArguments) {
+  const parameters = [];
+  for (let i = 2; i < commandLineArguments.length; i++) {
+    parameters.push(commandLineArguments[i]);
+  }
+  const packagesToCompare = parameters.filter(parameter => !cliOptions.includes(parameter));
+
+  const optionUsed = packagesToCompare.length !== parameters.length;
+
+  let option = OptionsEnum.prod;
+  if (optionUsed) {
+    if (parameters.find(parameter => parameter === "--both")) {
+      option = OptionsEnum.both;
+    }
+    if (parameters.find(parameter => parameter === "--dev")) {
+      option = OptionsEnum.dev;
+    }
+  }
+  return { packagesToCompare, option };
+}
+function red(textMessage) {
+  return `\x1b[31m${textMessage}\x1b[0m`;
+}
+function displayResults(ci, results) {
+  let differenceFound = false;
+  results.forEach(({ dependency, versions }) => {
+    if (versions.length > 1) {
+      differenceFound = true;
+      console.info(red(`  "${dependency}": "${versions}"`));
+    } else {
+      if (!ci) {
+        console.info(`  "${dependency}": "${versions}"`);
+      }
+    }
+  });
+  if (differenceFound && ci) {
+    process.exit(1);
+  }
+}
+
+module.exports = { getDiffs, OptionsEnum, parseArgs, displayResults };

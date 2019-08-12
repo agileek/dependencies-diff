@@ -20,6 +20,9 @@ diff-packages --dev package.json /other/package.json
 
 # Want to see both ?
 diff-packages --both package.json /other/package.json
+
+# Want to fail on pour CI?
+CI=true diff-packages --both package.json /other/package.json
 ```
 
 
